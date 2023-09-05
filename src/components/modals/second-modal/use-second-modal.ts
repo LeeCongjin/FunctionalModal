@@ -9,6 +9,8 @@ import {
 } from "vue";
 import Modal from "./SecondModal.vue";
 
+type StringKey = Record<string, any>;
+
 /**
  * 通过引入弹窗组件来获取组件的除show，update：show以外的props和emits来作为open函数的
  */
@@ -26,7 +28,7 @@ type OpenParam = Omit<
 >;
 
 interface AnyFileChangeModal {
-  open: (param?: OpenParam) => Promise<void>;
+  open: (param: OpenParam) => Promise<void>;
 }
 
 /**
@@ -35,7 +37,7 @@ interface AnyFileChangeModal {
 type AllProps = Omit<
   OpenParam,
   "onClose" | "onCancel" | "onConfirm" | "onUpdate:show"
-> & { show: boolean };
+> & { show: boolean } & StringKey;
 
 const anyModalKey: InjectionKey<AnyFileChangeModal> = Symbol("ModalKey");
 export function provideSecondModal() {

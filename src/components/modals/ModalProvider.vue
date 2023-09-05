@@ -19,10 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import TestModal from "./test-modal/TestModal.vue";
-import { provideTestModal } from "./test-modal/use-test-modal";
-import SecondModal from "./second-modal/SecondModal.vue";
-import { provideSecondModal } from "./second-modal/use-second-modal";
+import TestModal from "./test-modal/TestModal.vue"
+import { provideTestModal } from "./test-modal/use-test-modal"
+import SecondModal from "./second-modal/SecondModal.vue"
+import { provideSecondModal } from "./second-modal/use-second-modal"
 /** 新增import */
 
 const {
@@ -31,13 +31,13 @@ const {
   closeCallback: closeTestModalCallback,
   confirmCallback: confirmTestModalCallback,
   cancelCallback: cancelTestModalCallback,
-} = provideTestModal();
+} = provideTestModal()
 const {
   allProps: allSecondModalProps,
   handleUpdateShow: handleSecondModalUpdateShow,
   closeCallback: closeSecondModalCallback,
   confirmCallback: confirmSecondModalCallback,
   cancelCallback: cancelSecondModalCallback,
-} = provideSecondModal();
+} = provideSecondModal()
 /** 新增provide */
 </script>

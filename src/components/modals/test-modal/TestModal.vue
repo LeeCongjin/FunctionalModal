@@ -53,7 +53,7 @@ const loading = ref(false)
 const isShowModal = useVModel(props, "show")
 // 中间区域不要修改
 
-const rules: FormRules = []
+const rules: FormRules | [] = []
 
 const formData = reactive({
   inputValue: props.inputValue,

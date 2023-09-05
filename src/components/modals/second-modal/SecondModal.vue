@@ -38,82 +38,82 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from "vue";
-import { useVModel } from "@vueuse/core";
-import { FormRules } from "naive-ui";
+import { ref, reactive, computed, watch } from "vue"
+import { useVModel } from "@vueuse/core"
+import { FormRules } from "naive-ui"
 interface ModalProps {
-  show: boolean;
-  inputValue: string;
+  show: boolean
+  inputValue: string
 }
 
 // 中间区域不要修改
-const props = defineProps<ModalProps>();
-const formRef = ref();
-const loading = ref(false);
-const isShowModal = useVModel(props, "show");
+const props = defineProps<ModalProps>()
+const formRef = ref()
+const loading = ref(false)
+const isShowModal = useVModel(props, "show")
 // 中间区域不要修改
 
-const rules: FormRules = [];
+const rules: FormRules | [] = []
 
 const formData = reactive({
   inputValue: props.inputValue,
-});
+})
 
 const callBackData = computed(() => {
   return {
     formData,
-  };
-});
+  }
+})
 watch(
   () => props.show,
   () => {
     if (props.show) {
-      formData.inputValue = props.inputValue;
+      formData.inputValue = props.inputValue
     } else {
-      formData.inputValue = "";
+      formData.inputValue = ""
     }
   }
-);
+)
 
 const emits = defineEmits<{
-  (e: "update:show", value: boolean): void;
-  (e: "close", param: typeof callBackData.value): void;
+  (e: "update:show", value: boolean): void
+  (e: "close", param: typeof callBackData.value): void
   (
     e: "confirm",
     param: typeof callBackData.value,
     close: () => void,
     endLoading: () => void
-  ): void;
-  (e: "cancel", param: typeof callBackData.value): void;
-}>();
+  ): void
+  (e: "cancel", param: typeof callBackData.value): void
+}>()
 function handleCancel() {
   // 中间区域不要修改
-  emits("cancel", { ...callBackData.value });
-  isShowModal.value = false;
+  emits("cancel", { ...callBackData.value })
+  isShowModal.value = false
   // 中间区域不要修改
 }
 
 function handleClose() {
   // 中间区域不要修改
-  emits("close", { ...callBackData.value });
-  isShowModal.value = false;
+  emits("close", { ...callBackData.value })
+  isShowModal.value = false
   // 中间区域不要修改
 }
 
 function handleConfirm() {
   // 中间区域不要修改
-  loading.value = true;
+  loading.value = true
   emits(
     "confirm",
     { ...callBackData.value },
     () => {
-      loading.value = false;
-      isShowModal.value = false;
+      loading.value = false
+      isShowModal.value = false
     },
     () => {
-      loading.value = false;
+      loading.value = false
     }
-  );
+  )
   // 中间区域不要修改
 }
 </script>
